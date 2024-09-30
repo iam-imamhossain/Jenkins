@@ -12,5 +12,12 @@ pipeline {
                 '''
             }
         }
+        stage('with_out_docker'){
+            steps{
+                sh '''
+                touch witout_docker.txt
+                '''
+            }
+        }
     }
 }
