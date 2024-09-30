@@ -6,10 +6,10 @@ pipeline {
         stage('Test') {
             steps {
                 sh 'node --version'
-                sh ```
+                sh '''
                 ls -ltr
                 touch with_docker.txt
-                ```
+                '''
             }
         }
     }
