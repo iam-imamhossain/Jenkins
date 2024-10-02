@@ -1,23 +1,30 @@
 pipeline {
-    agent {
-        docker { image 'node:20.17.0-alpine3.20' }
+  agent any
+  environment{
+    IMAGE_TAG = "${BUILD_NUMBER}"
+  }
+  stages{
+    stage('checkout'){
+      steps{
+        git branch: 'main', credentialsId: 'dockerhub', url: 'https://github.com/iam-imamhossain/Jenkins.git'
+      }
     }
-    stages {
-        stage('Test') {
-            steps {
-                sh 'node --version'
-                sh '''
-                ls -ltr
-                touch with_docker.txt
-                '''
-            }
-        }
-        stage('with_out_docker'){
-            steps{
-                sh '''
-                touch witout_docker.txt
-                '''
+    stage('Build Docker'){
+        steps{
+            script{
+               sh'''
+                echo 'Build Docker image'
+                docker build -t imam2000/test:${BUILD_NUMBER} .    '''
             }
         }
     }
+    stage('push the artifacts'){
+        script{
+            sh'''
+            echo 'Push to Repo'
+            docker push imam2000/test:${BUILD_NUMBER}   
+            '''
+        }
+    }
+  }
 }
