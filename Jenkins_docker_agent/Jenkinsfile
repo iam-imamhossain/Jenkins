@@ -14,6 +14,7 @@ pipeline {
             script{
                sh'''
                 echo 'Build Docker image'
+                cd Jenkins_docker_agent
                 ls -ltr
                 docker build -t imam2000/test:${BUILD_NUMBER} .    
                 '''
