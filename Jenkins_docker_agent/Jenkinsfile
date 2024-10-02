@@ -20,12 +20,14 @@ pipeline {
         }
     }
     stage('push the artifacts'){
-        script{
-            sh'''
-            echo 'Push to Repo'
-            docker push imam2000/test:${BUILD_NUMBER}   
-            '''
-        }
+       steps{
+            script{
+                sh'''
+                echo 'Push to Repo'
+                docker push imam2000/test:${BUILD_NUMBER}   
+                '''
+           }
+       }
     }
   }
 }
