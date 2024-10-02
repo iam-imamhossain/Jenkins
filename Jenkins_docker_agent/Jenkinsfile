@@ -14,7 +14,8 @@ pipeline {
             script{
                sh'''
                 echo 'Build Docker image'
-                docker build -t imam2000/test:${BUILD_NUMBER} .    '''
+                docker build -t imam2000/test:${BUILD_NUMBER} .    
+                '''
             }
         }
     }
