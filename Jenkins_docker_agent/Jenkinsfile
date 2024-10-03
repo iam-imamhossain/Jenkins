@@ -27,7 +27,6 @@ pipeline {
             docker push imam2000/test:${BUILD_NUMBER}
            '''
         }
-      }
     }
   }
 }
