@@ -23,7 +23,7 @@ pipeline {
     }
    stage('publish docker') {
       withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'DOCKER_REGISTRY_PWD', usernameVariable: 'DOCKER_REGISTRY_USER')]) {
-          sh "docker build -t imam2000/test:${BUILD_NUMBER}"
+          sh "docker push imam2000/test:${BUILD_NUMBER}"
       }
     }
   }
