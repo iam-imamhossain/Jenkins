@@ -1,0 +1,15 @@
+pipeline {
+    agent {
+        docker {
+            image 'alpine'
+            args '--user root -v /var/run/docker.sock:/var/run/docker.sock'
+        }
+    }
+    stages {
+        stage('Build') {
+            steps {
+                sh 'echo Hello, Docker Agent!'
+            }
+        }
+    }
+}
